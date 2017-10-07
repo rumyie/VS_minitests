@@ -1,0 +1,30 @@
+Assignment1_Task4
+
+4.1.
+A)
+B) default case missing
+
+4.2. Activity lifecycle
+the three static states in which an Activity can exist
+Resumed onResume()
+Paused onPause()
+Stopped onStop()
+
+4.3. in res/values/strings.xml
+
+4.4. Intents are used for communication between components of an app
+e.g. to launch another activity one passes an (explicit) Intent (that specifies the current activity and the activity to be started) to startActivity()
+
+Explicit Intents start a specific component of the app by name
+Implicit Intents let some other unspecified component of the app handle an action
+
+4.5. Service lifecycle
+a)
+b)
+c)
+d)
+
+4.6. AndroidManifest
+- state the LocationService
+- add permission to get location
+- 
