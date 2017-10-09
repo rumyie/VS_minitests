@@ -2,29 +2,36 @@ Assignment1_Task4
 
 4.1.
 A)
-B) default case missing
+B)  default case missing
+    If an event with sensor type different from ACCELEROMETER and PROXIMITY is passed to the public method onSensorChanged, there will be no effect, and no log of the desired sensor values will be made.
 
 4.2. Activity lifecycle
-the three static states in which an Activity can exist
+the three static states in which an Activity can exist, listed with the corresponding callback functions
 Resumed onResume()
 Paused onPause()
 Stopped onStop()
 
 4.3. in res/values/strings.xml
+This significantly facilitates changing literal strings and it is especially useful when translating an app into another language; instead of messing in the code, one just creates another strings.xml file.
 
-4.4. Intents are used for communication between components of an app
-e.g. to launch another activity one passes an (explicit) Intent (that specifies the current activity and the activity to be started) to startActivity()
+4.4. Intents are messaging objects used for communication between components of an app
+e.g. to launch another activity one passes an (explicit) Intent (that specifies the activity to be started) to startActivity()
 
 Explicit Intents start a specific component of the app by name
 Implicit Intents let some other unspecified component of the app handle an action
 
 4.5. Service lifecycle
-a)
-b)
-c)
-d)
+a) No, the service will be stopped when stopService() is called.
+b) No. For interaction, a component must bind to the service, so the service is bound. However, multiple clients can bind to and thus interact with a service.
+c) Yes.
+d) No, the programmer should create a new thread in that case.
 
 4.6. AndroidManifest
 - state the LocationService
+    <service
+        android:name="ch.ethz.inf.vs.android.nethz.locationsender.LocationService">
+    </service>
 - add permission to get location
-- 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+- add permission to send text message to phone number
+    <uses-permission android:name="android.permission.SEND_SMS" />
