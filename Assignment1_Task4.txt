@@ -7,7 +7,8 @@ A) a) 	SensorManager sens_man = (SensorManager) getSystemService(Context.SENSOR_
    b)	// Assume the sensor is given as: Sensor sens;
 	sens.getMaximumRange();
 
-   c)	SensorManager sens_man = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+   c)	// sens.getHighestDirectReportRateLevel() requires API Level 26
+	SensorManager sens_man = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 	Sensor sens = sens_man.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sens_man.registerListener(new SensorEventListener() {
             @Override
