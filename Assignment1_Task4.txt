@@ -1,7 +1,27 @@
 Assignment1_Task4
 
 4.1.
-A)
+A) a) 	SensorManager sens_man = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+	List<Sensor> sens_list = sens_man.getSensorList(Sensor.TYPE_ALL);
+  
+   b)	// Assume the sensor is given as: Sensor sens;
+	sens.getMaximumRange();
+
+   c)	// sens.getHighestDirectReportRateLevel() requires API Level 26
+	SensorManager sens_man = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+	Sensor sens = sens_man.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sens_man.registerListener(new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        },sens,sens.getHighestDirectReportRateLevel());
+
 B)  default case missing
     If an event with sensor type different from ACCELEROMETER and PROXIMITY is passed to the public method onSensorChanged, there will be no effect, and no log of the desired sensor values will be made.
 
