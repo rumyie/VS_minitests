@@ -1,0 +1,51 @@
+Assignment2_Task4
+
+4.1.
+a)
+b)
+c)
+
+4.2. from oracle docs
+a) The java.net package provides a low level API and a high level API, respectively dealing
+with addresses, sockets, network interfaces, and URIs, URLs, connections.
+java.net.Socket : for implementing communication endpoints (sockets) between machines
+java.net.URLConnection : for implementing communication via reading from and writing to resources referenced by a URL
+TODO (how are they used)
+b)
+
+4.3.
+a) The REST principles can be used to implement ROAs, SOAP is a standard to implement SOAs.
+ROA: resource-oriented architecture. SOA: service-oriented architecture.
+b) No, it's the other way round. The description holds for stateful servers.
+With stateless servers, each request must be fully described, the stateless server does
+not store client-context, and information must be resent.
+c) Yes.
+d) Yes, among others.
+
+4.4.
+a) the WSDL file at http://vslab.inf.ethz.ch:8080/SunSPOTWebServices/SunSPOTWebservice?WSDL
+b) TODO
+<message name="getSpot">
+    <part name="parameters" element="tns:getSpot"/>
+</message>
+<message name="getSpotResponse">
+    <part name="parameters" element="tns:getSpotResponse"/>
+</message>
+
+<operation name="getSpot">
+    <input wsam:Action="http://webservices.vslecture.vs.inf.ethz.ch/SunSPOTWebservice/getSpotRequest"
+    message="tns:getSpot"/>
+    <output wsam:Action="http://webservices.vslecture.vs.inf.ethz.ch/SunSPOTWebservice/getSpotResponse"
+    message="tns:getSpotResponse"/>
+    <fault message="tns:SunSpotsWSException" name="SunSpotsWSException"
+    wsam:Action="http://webservices.vslecture.vs.inf.ethz.ch/SunSPOTWebservice/getSpot/Fault/SunSpotsWSException"/>
+</operation>
+
+c) TODO
+SMTP instead of HTTP (using another application layer protocol to transport SOAP webservice messages)
+
+4.5.
+a)
+b)
+c)
+d)
