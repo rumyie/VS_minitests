@@ -1,9 +1,19 @@
 Assignment2_Task4
 
 4.1.
-a)
-b)
-c)
+a) Request-Line
+
+   The Request-Line begins with a method token, followed by the
+   Request-URI and the protocol version, and ending with CRLF. The
+   elements are separated by SP characters. No CR or LF is allowed
+   except in the final CRLF sequence.
+
+        Request-Line   = Method SP Request-URI SP HTTP-Version CRLF
+
+b) GET / HTTP/1.1 CRLF CRLF
+
+c) Cacheability: If-Modified-Since and If-Unmodified-Since allow to check validity of cached information
+   Statelessness: All information in Request-Line, Headers and Body of the request
 
 4.2. from oracle docs
 a) The java.net package provides a low level API and a high level API, respectively dealing
