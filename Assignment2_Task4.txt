@@ -10,7 +10,8 @@ a) Request-Line
 
         Request-Line   = Method SP Request-URI SP HTTP-Version CRLF
 
-b) GET / HTTP/1.1 CRLF CRLF
+b) GET / HTTP/1.1CRLFCRLF
+Alternatively also GET /CRLFCRLF is enough. Altough the response will then not contain any headers.
 
 c) Cacheability: If-Modified-Since and If-Unmodified-Since allow to check validity of cached information
    Statelessness: All information in Request-Line, Headers and Body of the request
@@ -55,7 +56,9 @@ c) TODO
 SMTP instead of HTTP (using another application layer protocol to transport SOAP webservice messages)
 
 4.5.
-a)
-b)
-c)
-d)
+a) The IP is 10.0.2.15.
+   TODO
+b) It refers to the emulated device's own loopback interface.
+c) It can be reached by the IP 10.0.2.2.
+d) The connection can be built by using port forwarding:
+   TODO
