@@ -10,7 +10,12 @@ a) Request-Line
 
         Request-Line   = Method SP Request-URI SP HTTP-Version CRLF
 
-b) GET / HTTP/1.1CRLFCRLF
+b) normal, with closing connection:
+	GET / HTTP/1.1CRLF
+	Host: 192.168.1.1:8080CRLF
+	Connection: closeCRLFCRLF
+without host, and using HTTP 1.0 so that connection closes:
+	GET / HTTP/1.0CRLFCRLF
 Alternatively also GET /CRLFCRLF is enough. Altough the response will then not contain any headers.
 
 c) Cacheability: If-Modified-Since and If-Unmodified-Since allow to check validity of cached information
