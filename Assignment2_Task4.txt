@@ -22,24 +22,24 @@ c) Cacheability: If-Modified-Since and If-Unmodified-Since allow to check validi
    Statelessness: All information in Request-Line, Headers and Body of the request
 
 4.2. from oracle docs
-a) The java.net package provides a low level API and a high level API, respectively dealing
-with addresses, sockets, network interfaces, and URIs, URLs, connections.
-java.net.Socket : for implementing communication endpoints (sockets, bidirectional) between machines
-    The client uses the Socket class to receive data via getInputStream and to send data via getOutputStream.
-    The server uses the ServerSocket class to listen for requests and to return results.
+a) The java.net package provides a low level API and a high level API, respectively dealing with addresses, sockets, network interfaces, and URIs, URLs, connections.
+The two classes java.net.Socket and java.net.ServerSocket from the low level API are used for implementing communication endpoints (called sockets) between machines.
+The client uses the Socket class to receive data via getInputStream and to send data via getOutputStream.
+The server uses the ServerSocket class to listen for requests and to return results.
+(Remark: The java.net.URLConnection class from the high level API is used for implementing communication via reading from and writing to resources referenced by a URL.
+The client calls openConnection() and can then manipulate some parameters of the connection.
+Afterwards, the client calls connect() to initiate the actual connection and finally the remote data can be accessed by the client.)
 
-java.net.URLConnection : for implementing communication via reading from and writing to resources referenced by a URL
-    The client calls openConnection() and can then manipulate some parameters of the connection. Afterwards, the client calls connect() to initiate the actual connection and finally the remote data can be accessed by the client.
-    TODO: //server side
-
-b) The read method in class InputStream is blocking (until data can be read or end of stream reached or exception thrown).
+b) The read method in class InputStream is blocking. Methods of OutputStream do not block.
+A process is blocked when waiting for an IO operation to complete. While blocked, the process is not runnable and does not perform any computation. Other processes can be scheduled in the meantime. When IO completes, the process is ready to be run again.
+The read method of InputStream will block until data can be read or end of stream is reached or an IOException is thrown. When end of stream is reached, the method returns.
 
 4.3.
-a) No, The REST principles can be used to implement ROAs, SOAP is a standard to implement SOAs.
+a) The REST principles can be used to implement ROAs, SOAP is a standard to implement SOAs.
 ROA: resource-oriented architecture. SOA: service-oriented architecture.
+While they both allow to access webservices, they are different protocols and which one is suitable depends on the webservice used (also, webservices do not need to support both options).
 b) No, it's the other way round. The description holds for stateful servers.
-With stateless servers, each request must be fully described, the stateless server does
-not store client-context, and information must be resent.
+With stateless servers, each request must be fully described, the stateless server does not store client-context, and information must be resent.
 c) Yes.
 d) Yes, among others.
 
@@ -61,18 +61,18 @@ these message definitions are then used in the operation definitions
 
 c) SMTP instead of HTTP (using another application layer protocol to transport SOAP webservice messages)
 SOAP requests and responses are then carried in email messages.
-In the WSDL file, the transport protocol is declared at soap:binding.
-(transport=".../smtp" instead of transport=".../http")
+In the WSDL file, the transport protocol is declared at soap:binding. (transport=".../smtp" instead of transport=".../http")
 example of http binding <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 example of smtp binding <soap:binding transport="http://schemas.pocketsoap.com/soap/smtp" style="document"/>
 
 The soap:address would change; instead of an http:// URI, you would need a mailto: URI to obtain an SMTP connection.
 
 4.5.
-a) The IP is 10.0.2.15.
-   TODO
+a) The IP address is 10.0.2.15. Each emulated instance is in its own private network, thus multiple IP addresses need not be assigned.
+The emulators are identified with individual port numbers.
+(This is somewhat similar to the concept of multiple nodes behind a single NAT.)
 b) It refers to the emulated device's own loopback interface.
-c) It can be reached by the IP 10.0.2.2.
+c) It can be reached by the IP address 10.0.2.2.
 d) The connection can be built by using port forwarding:
    e.g. adb forward tcp:1204 tcp:8088
    forwards port 1204 of the host to port 8088 on the emulated device and the host can then access the connection with localhost:1204
