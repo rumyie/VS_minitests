@@ -16,7 +16,7 @@ b) normal, with closing connection:
 	Connection: closeCRLFCRLF
 without host, and using HTTP 1.0 so that connection closes:
 	GET / HTTP/1.0CRLFCRLF
-Alternatively also GET /CRLFCRLF is enough. Altough the response will then not contain any headers.
+Alternatively also GET /CRLFCRLF is enough. Although the response will then not contain any headers.
 
 c) Cacheability: If-Modified-Since and If-Unmodified-Since allow to check validity of cached information
    Statelessness: All information in Request-Line, Headers and Body of the request
@@ -24,10 +24,13 @@ c) Cacheability: If-Modified-Since and If-Unmodified-Since allow to check validi
 4.2. from oracle docs
 a) The java.net package provides a low level API and a high level API, respectively dealing
 with addresses, sockets, network interfaces, and URIs, URLs, connections.
-java.net.Socket : for implementing communication endpoints (sockets) between machines
+java.net.Socket : for implementing communication endpoints (sockets, bidirectional) between machines
+    The client uses the Socket class to receive data via getInputStream and to send data via getOutputStream.
+    The server uses the ServerSocket class to listen for requests and to return results.
 java.net.URLConnection : for implementing communication via reading from and writing to resources referenced by a URL
-TODO (how are they used)
-b)
+    TODO
+
+b) The read method in class InputStream is blocking (until data can be read or end of stream reached or exception thrown).
 
 4.3.
 a) The REST principles can be used to implement ROAs, SOAP is a standard to implement SOAs.
@@ -40,7 +43,10 @@ d) Yes, among others.
 
 4.4.
 a) the WSDL file at http://vslab.inf.ethz.ch:8080/SunSPOTWebServices/SunSPOTWebservice?WSDL
-b) TODO
+b)
+the element definitions in the WSDL file
+(message is a definition consisting of parts "name", "element", "type", ...)
+
 <message name="getSpot">
     <part name="parameters" element="tns:getSpot"/>
 </message>
@@ -48,17 +54,17 @@ b) TODO
     <part name="parameters" element="tns:getSpotResponse"/>
 </message>
 
-<operation name="getSpot">
-    <input wsam:Action="http://webservices.vslecture.vs.inf.ethz.ch/SunSPOTWebservice/getSpotRequest"
-    message="tns:getSpot"/>
-    <output wsam:Action="http://webservices.vslecture.vs.inf.ethz.ch/SunSPOTWebservice/getSpotResponse"
-    message="tns:getSpotResponse"/>
-    <fault message="tns:SunSpotsWSException" name="SunSpotsWSException"
-    wsam:Action="http://webservices.vslecture.vs.inf.ethz.ch/SunSPOTWebservice/getSpot/Fault/SunSpotsWSException"/>
-</operation>
+these message definitions are then used in the operation definitions
+(inside parts like "input", "output", "fault", ...)
 
-c) TODO
-SMTP instead of HTTP (using another application layer protocol to transport SOAP webservice messages)
+c) SMTP instead of HTTP (using another application layer protocol to transport SOAP webservice messages)
+SOAP requests and responses are then carried in email messages.
+In the WSDL file, the transport protocol is declared at soap:binding.
+(transport=".../smtp" instead of transport=".../http")
+example of http binding <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+example of smtp binding <soap:binding transport="http://schemas.pocketsoap.com/soap/smtp" style="document"/>
+
+The soap:address would change; instead of an http:// URI, you would need a mailto: URI to obtain an SMTP connection.
 
 4.5.
 a) The IP is 10.0.2.15.
