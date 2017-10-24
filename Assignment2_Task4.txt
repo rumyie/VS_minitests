@@ -27,13 +27,15 @@ with addresses, sockets, network interfaces, and URIs, URLs, connections.
 java.net.Socket : for implementing communication endpoints (sockets, bidirectional) between machines
     The client uses the Socket class to receive data via getInputStream and to send data via getOutputStream.
     The server uses the ServerSocket class to listen for requests and to return results.
+
 java.net.URLConnection : for implementing communication via reading from and writing to resources referenced by a URL
-    TODO
+    The client calls openConnection() and can then manipulate some parameters of the connection. Afterwards, the client calls connect() to initiate the actual connection and finally the remote data can be accessed by the client.
+    TODO: //server side
 
 b) The read method in class InputStream is blocking (until data can be read or end of stream reached or exception thrown).
 
 4.3.
-a) The REST principles can be used to implement ROAs, SOAP is a standard to implement SOAs.
+a) No, The REST principles can be used to implement ROAs, SOAP is a standard to implement SOAs.
 ROA: resource-oriented architecture. SOA: service-oriented architecture.
 b) No, it's the other way round. The description holds for stateful servers.
 With stateless servers, each request must be fully described, the stateless server does
@@ -72,4 +74,5 @@ a) The IP is 10.0.2.15.
 b) It refers to the emulated device's own loopback interface.
 c) It can be reached by the IP 10.0.2.2.
 d) The connection can be built by using port forwarding:
-   TODO
+   e.g. adb forward tcp:1204 tcp:8088
+   forwards port 1204 of the host to port 8088 on the emulated device and the host can then access the connection with localhost:1204
