@@ -1,0 +1,20 @@
+Assignment3_Task4
+
+Group: ...
+Members: ...
+
+1. What are the main advantages of using Vector Clocks over Lamport timestamps?
+
+Vector Clocks guarantee the strong clock consistency condition, Lamport timestamps do not. The difference lies in the implication directions of the formula for a clock condition.
+For two events with different logical clock values, Lamport timestamps can only guarantee that the event with the greater clock value did not happen before the event with the lower clock value.
+Vector Clocks, however, can guarantee that the event with the lower clock value happened before the event with the greater clock value. Thus, they let you derive more information from looking at clock values.
+
+2. Give the two conditions for two Vector Clocks to be causally dependent.
+
+3. Does a clock tick happen before or after the sending of a message? What are the implications of changing this?
+
+4. [Figure 1 with Vector Clocks for each event and each message]
+
+5. Which problem of Vector Clocks is solved in Landes' paper?
+
+Dynamic Vector Clocks, as presented in the paper, aim to solve the problem "that the number of processes in the distributed system has to be constant and known in advance".
