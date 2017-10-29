@@ -11,7 +11,14 @@ Vector Clocks, however, can guarantee that the event with the lower clock value 
 
 2. Give the two conditions for two Vector Clocks to be causally dependent.
 
+
+
 3. Does a clock tick happen before or after the sending of a message? What are the implications of changing this?
+
+It happens immediately before sending the message. 
+Changing this would imply that the information sent to other processes is always outdated by one event.
+More specifically, in the beginning the vector clocks of all processes are filled with zeroes. Now, when the the first message is sent by a process, it will just send the zero vector with the message. Thus, the processes receiving the message would think no event had happened yet, but of course this would contradict the fact that they had just received a message.
+Infering that an event had already happened would be difficult. Because the vector is all zeroes, as a receiving process, you could only assume that no event or an event in all processes had happened, including your own process. This would contradict the fact that you had not yet sent a message.
 
 4. [Figure 1 with Vector Clocks for each event and each message]
 
