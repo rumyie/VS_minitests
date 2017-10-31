@@ -11,14 +11,21 @@ Vector Clocks, however, can guarantee that the event with the lower clock value 
 
 2. Give the two conditions for two Vector Clocks to be causally dependent.
 
-
+Two vector clocks can be temporally, but not causally dependent.
+However, two events e1 and e2 can be causally dependent, and this is the case when either
+(i) e1 and e2 are two consecutive events on the same process or
+(ii) e2 receives a message sent by e1
+In both cases, the vector clocks at the events (denoted C(e1) and C(e2)) reflect the causal dependence of the events.
+A larger vector clock (or, more precisely, a vector clock with a vector for which all current values are greater or equal to the corresponding values of the other vector clock's vector, and at least one such value is strictly greater)
+means that the event with that larger vector clock is causally dependent on the other event. A value in the vector of an event's vector clock, say C(e)[k]=j, means that the event e causally depends on the first j events of process k.
+(as explained in the paper "Logical Time" by F. Mattern)
 
 3. Does a clock tick happen before or after the sending of a message? What are the implications of changing this?
 
 It happens immediately before sending the message. 
 Changing this would imply that the information sent to other processes is always outdated by one event.
 More specifically, in the beginning the vector clocks of all processes are filled with zeroes. Now, when the the first message is sent by a process, it will just send the zero vector with the message. Thus, the processes receiving the message would think no event had happened yet, but of course this would contradict the fact that they had just received a message.
-Infering that an event had already happened would be difficult. Because the vector is all zeroes, as a receiving process, you could only assume that no event or an event in all processes had happened, including your own process. This would contradict the fact that you had not yet sent a message.
+Inferring that an event had already happened would be difficult. Because the vector is all zeroes, as a receiving process, you could only assume that no event or an event in all processes had happened, including your own process. This would contradict the fact that you had not yet sent a message.
 
 4. [Figure 1 with Vector Clocks for each event and each message]
 
